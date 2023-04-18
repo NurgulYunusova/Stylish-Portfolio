@@ -1,40 +1,351 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap");
 
-.introSection {
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0.1) 100%
-    ),
-    url("../images/yellowBackground1.jpg");
+// ----- VARIABLES -----
+$base-font: "Source Sans Pro", sans-serif;
+$base-font-weight: 700;
+$base-color-black: #212529;
+$base-color-blue: #1d809f;
+$base-color-yellow: #ecb807;
+
+// ----- MIXINS -----
+@mixin headingFont($weight: $base-font-weight, $color: $base-color-black) {
+  font-weight: $weight;
+  color: $color;
+}
+
+@mixin button($color: $base-color-blue) {
+  background-color: $color;
+  border-radius: 8px;
+  padding: 1.5rem 2.7rem;
+  border: 0;
+  font-size: 16px;
+  font-family: $base-font;
+  cursor: pointer;
+}
+
+@mixin center($display: flex) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin background {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+}
 
-  .introContainer {
-    h1 {
-      font-family: "Source Sans Pro", sans-serif;
-      font-weight: 700;
-      font-size: 88px;
+body {
+  box-sizing: border-box;
+  font-family: $base-font;
+
+  // ----- INTRO SECTION -----
+  .introSection {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.1) 100%
+      ),
+      url("../images/yellowBackground1.jpg");
+    @include background();
+    .container {
+      width: 100%;
+      height: 100%;
+      position: relative;
     }
 
-    h3 {
-      font-family: "Source Sans Pro", sans-serif;
-      font-weight: 700;
-      font-size: 28px;
-      font-style: italic;
-    }
-
-    button {
-      background-color: #1d809f;
-      border-radius: 8px;
-      padding: 1.5rem;
-      border: 0;
-
-      a {
+    .menuContainer {
+      svg {
+        width: 14px;
         color: #fff;
+      }
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      @include center(inline-flex);
+      width: 50px;
+      height: 50px;
+      background-color: rgba(52, 58, 64, 0.5);
+      border-radius: 5px;
+      margin: 1rem 1rem 0 0;
+    }
+
+    .introContainer {
+      h1 {
+        @include headingFont();
+        font-size: 88px;
+      }
+
+      h3 {
+        @include headingFont();
+        font-size: 28px;
+        font-style: italic;
+        margin: 1rem 0 3rem;
+      }
+
+      button {
+        @include button();
+        a {
+          color: #fff;
+        }
+      }
+
+      @include center();
+      flex-direction: column;
+      height: 100%;
+    }
+  }
+
+  // ----- WHITE CONTENT SECTION -----
+  .whiteContentSection {
+    width: 100%;
+    height: 45vh;
+    background-color: #fff;
+
+    .container {
+      width: 100%;
+      height: 100%;
+      @include center();
+      flex-direction: column;
+
+      h2 {
+        @include headingFont();
+        font-size: 32px;
+      }
+
+      p {
+        @include headingFont(300);
+        font-size: 20px;
+        margin: 1rem 0 3rem;
+
+        a {
+          color: $base-color-blue;
+          text-decoration: underline;
+        }
+      }
+
+      button {
+        @include button($base-color-black);
+
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  // ----- SERVICES SECTION -----
+  .servicesSection {
+    width: 100%;
+    height: 60vh;
+    background-color: $base-color-blue;
+
+    .container {
+      width: 100%;
+      height: 100%;
+      @include center();
+      flex-direction: column;
+
+      h3 {
+        @include headingFont($color: $base-color-yellow);
+      }
+
+      h2 {
+        @include headingFont($color: #fff);
+        font-size: 48px;
+        margin: 0.5rem 0 3rem;
+      }
+
+      .offers {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7rem;
+
+        .offer {
+          @include center();
+          flex-direction: column;
+
+          .icon {
+            background-color: #fff;
+            color: $base-color-blue;
+            height: 7rem;
+            width: 7rem;
+            display: block;
+            line-height: 7.5rem;
+            font-size: 2.25rem;
+            @include center();
+            border-radius: 100%;
+          }
+
+          h4 {
+            @include headingFont($color: #fff);
+            font-size: 24px;
+            margin: 1rem 0;
+          }
+
+          p {
+            @include headingFont(
+              $weight: 300,
+              $color: rgba(255, 255, 255, 0.7)
+            );
+            font-size: 16px;
+
+            span {
+              svg {
+                height: 1rem;
+                vertical-align: -0.125em;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // ----- WELCOME SECTION -----
+  .welcomeSection {
+    width: 100%;
+    height: 78vh;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.1) 100%
+      ),
+      url("../images/yellowBackground2.jpg");
+    @include background();
+
+    .container {
+      width: 100%;
+      height: 100%;
+      @include center();
+      flex-direction: column;
+
+      h2 {
+        @include headingFont();
+        font-size: 56px;
+        max-width: 30rem;
+        line-height: 1.2;
+        text-align: center;
+        margin-bottom: 3.5rem;
+
+        .em {
+          font-style: italic;
+        }
+      }
+
+      button {
+        @include button();
+
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  // ----- PORTFOLIO SECTION -----
+  .portfolioSection {
+    width: 100%;
+    height: 150vh;
+
+    .container {
+      @extend .container;
+
+      h3 {
+        @include headingFont($color: $base-color-yellow);
+      }
+
+      h2 {
+        @include headingFont($color: $base-color-black);
+        font-size: 48px;
+        margin: 0.5rem 0 3rem;
+      }
+
+      .portfolioContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .row {
+          display: flex;
+          flex-direction: row;
+        }
+
+        .portfolio {
+          position: relative;
+          width: 620px;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+
+          .imgText {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            background-color: rgba(33, 37, 41, 0.2);
+            padding: 5rem;
+
+            h6 {
+              @include headingFont($color: #fff);
+              font-size: 13px;
+              margin-bottom: 15px;
+            }
+
+            p {
+              @include headingFont($color: #fff, $weight: 300);
+              font-size: 19px;
+              line-height: 1.3;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // ----- BLUE CONTENT SECTION -----
+  .blueContentSection {
+    width: 100%;
+    height: 40vh;
+    background-color: $base-color-blue;
+
+    .container {
+      width: 100%;
+      height: 100%;
+      @include center();
+      flex-direction: column;
+      gap: 1.8rem;
+
+      h2 {
+        @include headingFont($color: #fff);
+        font-size: 32px;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 2rem;
+
+        .clickBtn {
+          @include button($color: #f8f9fa);
+
+          a {
+            color: $base-color-black;
+          }
+        }
+
+        .lookBtn {
+          @include button($color: $base-color-black);
+
+          a {
+            color: #fff;
+          }
+        }
       }
     }
   }
