@@ -16,7 +16,7 @@ $base-color-yellow: #ecb807;
 @mixin button($color: $base-color-blue) {
   background-color: $color;
   border-radius: 8px;
-  padding: 1.5rem 2.7rem;
+  padding: 1.4rem 2.5rem;
   border: 0;
   font-size: 16px;
   font-family: $base-font;
@@ -62,7 +62,8 @@ body {
         color: #fff;
       }
 
-      position: absolute;
+      cursor: pointer;
+      position: fixed;
       top: 0;
       right: 0;
       @include center(inline-flex);
@@ -71,6 +72,10 @@ body {
       background-color: rgba(52, 58, 64, 0.5);
       border-radius: 5px;
       margin: 1rem 1rem 0 0;
+
+      &:hover {
+        background-color: #343a40;
+      }
     }
 
     .introContainer {
@@ -88,6 +93,12 @@ body {
 
       button {
         @include button();
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-color: #155d74;
+        }
+
         a {
           color: #fff;
         }
@@ -102,8 +113,8 @@ body {
   // ----- WHITE CONTENT SECTION -----
   .whiteContentSection {
     width: 100%;
-    height: 45vh;
-    background-color: #fff;
+    padding: 8rem 0;
+    background-color: #f8f9fa;
 
     .container {
       width: 100%;
@@ -114,12 +125,14 @@ body {
       h2 {
         @include headingFont();
         font-size: 32px;
+        text-align: center;
       }
 
       p {
         @include headingFont(300);
         font-size: 20px;
         margin: 1rem 0 3rem;
+        text-align: center;
 
         a {
           color: $base-color-blue;
@@ -129,6 +142,11 @@ body {
 
       button {
         @include button($base-color-black);
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-color: #424649;
+        }
 
         a {
           color: #fff;
@@ -140,7 +158,7 @@ body {
   // ----- SERVICES SECTION -----
   .servicesSection {
     width: 100%;
-    height: 60vh;
+    padding: 8rem 0;
     background-color: $base-color-blue;
 
     .container {
@@ -164,39 +182,44 @@ body {
         flex-wrap: wrap;
         gap: 7rem;
 
-        .offer {
-          @include center();
-          flex-direction: column;
+        .row {
+          display: flex;
+          gap: 7rem;
 
-          .icon {
-            background-color: #fff;
-            color: $base-color-blue;
-            height: 7rem;
-            width: 7rem;
-            display: block;
-            line-height: 7.5rem;
-            font-size: 2.25rem;
+          .offer {
             @include center();
-            border-radius: 100%;
-          }
+            flex-direction: column;
 
-          h4 {
-            @include headingFont($color: #fff);
-            font-size: 24px;
-            margin: 1rem 0;
-          }
+            .icon {
+              background-color: #fff;
+              color: $base-color-blue;
+              height: 7rem;
+              width: 7rem;
+              display: block;
+              line-height: 7.5rem;
+              font-size: 2.25rem;
+              @include center();
+              border-radius: 100%;
+            }
 
-          p {
-            @include headingFont(
-              $weight: 300,
-              $color: rgba(255, 255, 255, 0.7)
-            );
-            font-size: 16px;
+            h4 {
+              @include headingFont($color: #fff);
+              font-size: 24px;
+              margin: 1rem 0;
+            }
 
-            span {
-              svg {
-                height: 1rem;
-                vertical-align: -0.125em;
+            p {
+              @include headingFont(
+                $weight: 400,
+                $color: rgba(255, 255, 255, 0.7)
+              );
+              font-size: 16px;
+
+              span {
+                svg {
+                  height: 1rem;
+                  vertical-align: -0.125em;
+                }
               }
             }
           }
@@ -208,7 +231,7 @@ body {
   // ----- WELCOME SECTION -----
   .welcomeSection {
     width: 100%;
-    height: 78vh;
+    height: 100vh;
     background: linear-gradient(
         90deg,
         rgba(255, 255, 255, 0.1) 0%,
@@ -238,6 +261,11 @@ body {
 
       button {
         @include button();
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-color: #155d74;
+        }
 
         a {
           color: #fff;
@@ -249,10 +277,11 @@ body {
   // ----- PORTFOLIO SECTION -----
   .portfolioSection {
     width: 100%;
-    height: 150vh;
+    padding: 8rem 0;
 
     .container {
-      @extend .container;
+      @include center();
+      flex-direction: column;
 
       h3 {
         @include headingFont($color: $base-color-yellow);
@@ -273,35 +302,58 @@ body {
         .row {
           display: flex;
           flex-direction: row;
-        }
+          width: 87%;
 
-        .portfolio {
-          position: relative;
-          width: 620px;
+          .portfolio {
+            position: relative;
+            max-height: 100%;
+            cursor: pointer;
 
-          img {
-            width: 100%;
-            height: 100%;
-          }
-
-          .imgText {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            background-color: rgba(33, 37, 41, 0.2);
-            padding: 5rem;
-
-            h6 {
-              @include headingFont($color: #fff);
-              font-size: 13px;
-              margin-bottom: 15px;
+            &:hover .imgText {
+              background-color: rgba(29, 128, 159, 0.9);
+              clip-path: inset(2rem);
             }
 
-            p {
-              @include headingFont($color: #fff, $weight: 300);
-              font-size: 19px;
-              line-height: 1.3;
+            &:hover img {
+              clip-path: inset(2rem);
+            }
+
+            .portfolioImg {
+              height: 100%;
+
+              img {
+                width: 100%;
+                height: 100%;
+                transition: clip-path 0.25s ease-in-out;
+              }
+            }
+
+            .imgText {
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              background-color: rgba(33, 37, 41, 0.2);
+              width: 100%;
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+              transition: clip-path 0.25s ease-in-out, background-color 0.7s;
+              clip-path: inset(0px);
+
+              h6 {
+                @include headingFont($color: #fff);
+                font-size: 13px;
+                margin-bottom: 15px;
+                padding-left: 70px;
+              }
+
+              p {
+                @include headingFont($color: #fff, $weight: 300);
+                font-size: 19px;
+                line-height: 1.3;
+                padding: 0 70px 80px 70px;
+              }
             }
           }
         }
@@ -312,7 +364,7 @@ body {
   // ----- BLUE CONTENT SECTION -----
   .blueContentSection {
     width: 100%;
-    height: 40vh;
+    padding: 8rem 0;
     background-color: $base-color-blue;
 
     .container {
@@ -329,10 +381,15 @@ body {
 
       .buttons {
         display: flex;
-        gap: 2rem;
+        gap: 1.8rem;
 
         .clickBtn {
           @include button($color: #f8f9fa);
+          transition: all 0.2s ease-in-out;
+
+          &:hover {
+            background-color: #d3d4d5;
+          }
 
           a {
             color: $base-color-black;
@@ -341,10 +398,265 @@ body {
 
         .lookBtn {
           @include button($color: $base-color-black);
+          transition: all 0.2s ease-in-out;
+
+          &:hover {
+            background-color: #424649;
+          }
 
           a {
             color: #fff;
           }
+        }
+      }
+    }
+  }
+
+  // ----- FOOTER SECTION -----
+  footer {
+    width: 100%;
+    padding: 5rem 0;
+
+    .container {
+      width: 100%;
+      height: 100%;
+      @include center();
+      flex-direction: column;
+      gap: 3.8rem;
+
+      .socialMediaIcons {
+        display: flex;
+        gap: 0.8rem;
+
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 3.8rem;
+          height: 3.8rem;
+          background-color: $base-color-blue;
+          border-radius: 100%;
+          font-size: 1.5rem;
+          color: #fff;
+          transition: all 0.2s ease-in-out;
+
+          &:hover {
+            background-color: #155d74;
+          }
+        }
+      }
+
+      p {
+        @include headingFont($weight: 500, $color: #6c757d);
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+/* ----- MEDIA QUERIES ----- */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  body {
+    .introSection {
+      height: max-content;
+      padding: 8rem 0;
+
+      .introContainer {
+        h1 {
+          font-size: 64px;
+        }
+
+        h3 {
+          font-size: 25.5px;
+        }
+      }
+    }
+
+    .whiteContentSection {
+      .container {
+        h2 {
+          font-size: 28.1px;
+          padding: 0 50px;
+          line-height: 1.3;
+        }
+
+        p {
+          padding: 0 50px;
+          line-height: 1.5;
+        }
+      }
+    }
+
+    .servicesSection {
+      .offers {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        .row {
+          width: 80%;
+          .offer {
+            width: 50%;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
+    }
+
+    .welcomeSection {
+      height: max-content;
+      padding: 15rem 0;
+    }
+
+    .portfolioSection {
+      .container {
+        .portfolioContainer {
+          gap: 1rem;
+
+          .row {
+            flex-direction: column;
+            gap: 1rem;
+            width: 75%;
+
+            .portfolio {
+              .imgText {
+                h6 {
+                  padding-left: 30px;
+                }
+
+                p {
+                  padding: 0 20px 30px 30px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .blueContentSection {
+      .container {
+        h2 {
+          font-size: 28px;
+        }
+      }
+    }
+
+    .mapSection {
+      .container {
+        height: 800px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  body {
+    .introSection {
+      height: max-content;
+      padding: 8rem 0;
+
+      .introContainer {
+        h1 {
+          font-size: 64px;
+          text-align: center;
+        }
+
+        h3 {
+          font-size: 23.1px;
+          text-align: center;
+        }
+      }
+    }
+
+    .whiteContentSection {
+      .container {
+        h2 {
+          font-size: 24.7px;
+          padding: 0 30px;
+          line-height: 1.3;
+        }
+
+        p {
+          padding: 0 35px;
+          line-height: 1.5;
+        }
+      }
+    }
+
+    .servicesSection {
+      .container {
+        h2 {
+          padding: 0 2rem;
+          text-align: center;
+        }
+
+        .offers {
+          justify-content: center;
+          gap: 3rem;
+
+          .row {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+
+            .offer {
+              h4 {
+                font-size: 21.6px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .welcomeSection {
+      .container {
+        h2 {
+          padding: 0 2rem;
+        }
+      }
+    }
+
+    .portfolioSection {
+      .container {
+        h2 {
+          padding: 0 40px;
+          text-align: center;
+        }
+
+        .portfolioContainer {
+          gap: 1rem;
+
+          .row {
+            flex-direction: column;
+            gap: 1rem;
+            width: 85%;
+
+            .portfolio {
+              .imgText {
+                h6 {
+                  padding-left: 30px;
+                }
+
+                p {
+                  padding: 0 40px 30px 30px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .blueContentSection {
+      .container {
+        h2 {
+          font-size: 24.7px;
+          text-align: center;
+          padding: 0 2rem;
         }
       }
     }
